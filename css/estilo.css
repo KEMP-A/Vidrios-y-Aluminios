@@ -182,6 +182,11 @@ footer a:hover{color:#fff}
 @media(max-width:850px){
   #videopresentacion .container{width:96%}
   #videopresentacion .video-destacado{aspect-ratio:3/2;object-fit:contain;background:transparent}
+  .videos-sec .vcar{overflow:visible}
+  .videos-sec .vcar-track{overflow:hidden}
+  .videos-sec .car-btn{padding:10px 13px;font-size:18px}
+  .videos-sec .car-btn.prev{left:-12px}
+  .videos-sec .car-btn.next{right:-12px}
   .vcar-track .play-wrap{flex:0 0 100%;width:100%;padding:0}
   .videos-sec{padding-bottom:12px}
   #galeria{padding-top:30px}
