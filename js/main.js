@@ -227,8 +227,12 @@ function addVideoPlayButton(video, isFeatured = false) {
   };
   let pointerStart = null;
   let previousVolume = video.volume || 1;
+  let hasStartedPlayback = false;
   const playVideo = () => {
-    video.play().catch(() => {
+    if (!hasStartedPlayback) video.currentTime = 0;
+    video.play().then(() => {
+      hasStartedPlayback = true;
+    }).catch(() => {
       playButton.classList.remove('hide');
     });
   };
