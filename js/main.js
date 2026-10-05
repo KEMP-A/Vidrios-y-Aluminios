@@ -153,8 +153,10 @@ let videoItems = [];
 let videoTransitioning = false;
 
 function addVideoPlayButton(video, isFeatured = false) {
-  video.removeAttribute('controls');
+  video.controls = false;
   video.playsInline = true;
+  video.muted = false;
+  video.volume = 1;
   video.classList.remove('reveal');
   if (!video.parentElement.classList.contains('play-wrap')) {
     const wrapper = document.createElement('div');
@@ -167,31 +169,133 @@ function addVideoPlayButton(video, isFeatured = false) {
   playButton.className = 'play-btn';
   playButton.type = 'button';
   playButton.setAttribute('aria-label', 'Reproducir video');
-  playButton.addEventListener('click', () => {
+  const videoWrapper = video.parentElement;
+  const timeline = document.createElement('div');
+  timeline.className = 'video-timeline';
+  const elapsedTime = document.createElement('span');
+  elapsedTime.className = 'video-time';
+  elapsedTime.textContent = '0:00';
+  const seekBar = document.createElement('input');
+  seekBar.className = 'video-seek';
+  seekBar.type = 'range';
+  seekBar.min = '0';
+  seekBar.max = '0';
+  seekBar.step = '0.1';
+  seekBar.value = '0';
+  seekBar.setAttribute('aria-label', 'Posición del video');
+  const volumeControl = document.createElement('div');
+  volumeControl.className = 'video-volume-control';
+  const volumeButton = document.createElement('button');
+  volumeButton.className = 'video-volume-button';
+  volumeButton.type = 'button';
+  const volumeBar = document.createElement('input');
+  volumeBar.className = 'video-volume';
+  volumeBar.type = 'range';
+  volumeBar.min = '0';
+  volumeBar.max = '1';
+  volumeBar.step = '0.01';
+  volumeBar.value = String(video.muted ? 0 : video.volume);
+  volumeBar.setAttribute('aria-label', 'Volumen del video');
+  volumeControl.append(volumeButton, volumeBar);
+  const totalTime = document.createElement('span');
+  totalTime.className = 'video-time';
+  totalTime.textContent = '0:00';
+  timeline.append(elapsedTime, seekBar, totalTime, volumeControl);
+
+  const formatVideoTime = seconds => {
+    if (!Number.isFinite(seconds) || seconds < 0) return '0:00';
+    const wholeSeconds = Math.floor(seconds);
+    const minutes = Math.floor(wholeSeconds / 60);
+    const remainingSeconds = String(wholeSeconds % 60).padStart(2, '0');
+    return `${minutes}:${remainingSeconds}`;
+  };
+  const updateTimeline = () => {
+    const duration = Number.isFinite(video.duration) ? video.duration : 0;
+    const currentTime = Number.isFinite(video.currentTime) ? video.currentTime : 0;
+    seekBar.max = String(duration);
+    seekBar.value = String(Math.min(currentTime, duration));
+    elapsedTime.textContent = formatVideoTime(currentTime);
+    totalTime.textContent = formatVideoTime(duration);
+    seekBar.setAttribute('aria-valuetext', `${formatVideoTime(currentTime)} de ${formatVideoTime(duration)}`);
+  };
+  const updateVolumeControl = () => {
+    const muted = video.muted || video.volume === 0;
+    volumeButton.textContent = muted ? '🔇' : '🔊';
+    volumeButton.setAttribute('aria-label', muted ? 'Activar sonido' : 'Silenciar video');
+    volumeButton.setAttribute('aria-pressed', String(muted));
+    volumeBar.value = String(muted ? 0 : video.volume);
+  };
+  let pointerStart = null;
+  let previousVolume = video.volume || 1;
+  const playVideo = () => {
     video.play().catch(() => {
-      video.removeAttribute('controls');
       playButton.classList.remove('hide');
     });
+  };
+  const togglePlayback = () => {
+    if (video.paused || video.ended) playVideo();
+    else video.pause();
+  };
+  playButton.addEventListener('click', togglePlayback);
+  videoWrapper.append(playButton, timeline);
+  seekBar.addEventListener('input', () => {
+    const seekTime = Number(seekBar.value);
+    if (Number.isFinite(seekTime) && Number.isFinite(video.duration)) {
+      video.currentTime = Math.min(Math.max(seekTime, 0), video.duration);
+    }
+    updateTimeline();
   });
-  video.parentElement.appendChild(playButton);
+  volumeBar.addEventListener('input', () => {
+    const volume = Number(volumeBar.value);
+    if (!Number.isFinite(volume)) return;
+    video.volume = Math.min(Math.max(volume, 0), 1);
+    video.muted = video.volume === 0;
+    if (video.volume > 0) previousVolume = video.volume;
+    updateVolumeControl();
+  });
+  volumeButton.addEventListener('click', () => {
+    if (video.muted || video.volume === 0) {
+      video.volume = previousVolume;
+      video.muted = false;
+    } else {
+      previousVolume = video.volume;
+      video.muted = true;
+    }
+    updateVolumeControl();
+  });
+  video.addEventListener('volumechange', updateVolumeControl);
+  ['durationchange', 'loadedmetadata', 'seeked', 'timeupdate'].forEach(eventName => {
+    video.addEventListener(eventName, updateTimeline);
+  });
+  updateTimeline();
+  updateVolumeControl();
+  videoWrapper.addEventListener('pointerdown', event => {
+    if (!event.isPrimary) return;
+    pointerStart = { id: event.pointerId, x: event.clientX, y: event.clientY };
+  });
+  videoWrapper.addEventListener('pointerup', event => {
+    const start = pointerStart;
+    pointerStart = null;
+    if (!start || !event.isPrimary || event.pointerId !== start.id) return;
+    if (Math.hypot(event.clientX - start.x, event.clientY - start.y) > 12) return;
+    if (event.target instanceof Element && event.target.closest('.play-btn')) return;
+    if (event.target instanceof Element && event.target.closest('.video-timeline')) return;
+
+    const bounds = video.getBoundingClientRect();
+    if (video.controls && event.clientY >= bounds.bottom - 56) return;
+    togglePlayback();
+  });
   video.addEventListener('play', () => {
-    video.setAttribute('controls', '');
+    videoWrapper.classList.add('is-playing');
     playButton.classList.add('hide');
   });
   video.addEventListener('pause', () => {
-    video.removeAttribute('controls');
+    videoWrapper.classList.remove('is-playing');
     playButton.classList.remove('hide');
   });
   video.addEventListener('ended', () => {
-    video.removeAttribute('controls');
+    videoWrapper.classList.remove('is-playing');
     playButton.classList.remove('hide');
-  });
-  const pauseOnVideoSurface = () => {
-    if (!video.paused) video.pause();
-  };
-  video.addEventListener('click', pauseOnVideoSurface);
-  video.addEventListener('pointerup', event => {
-    if (event.pointerType === 'touch') pauseOnVideoSurface();
   });
 }
 
