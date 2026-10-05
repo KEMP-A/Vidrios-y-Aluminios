@@ -1,0 +1,45 @@
+# Seguridad y secretos
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+*.crt
+*.p12
+*.pfx
+
+# Backups y temporales
+*.backup
+*.bak
+*~
+*.tmp
+*.temp
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# IDE/Editor
+.vscode/*
+!.vscode/extensions.json
+.idea/
+*.swp
+*.swo
+
+# Node / build (si se agrega en el futuro)
+node_modules/
+dist/
+build/
+*.tsbuildinfo
+
+# Scripts de generación (ya eliminados, pero por si se regeneran)
+*.ps1
+*.sh
+
+# Cache
+.cache/
+.parcel-cache/
+.eslintcache

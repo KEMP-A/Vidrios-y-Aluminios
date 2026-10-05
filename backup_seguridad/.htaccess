@@ -1,0 +1,92 @@
+﻿# Seguridad y rendimiento para Apache
+# Copiar como ".htaccess" en la raíz del sitio publicado
+
+# =============================================================================
+# HTTPS / HSTS
+# =============================================================================
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    # Redirigir HTTP -> HTTPS
+    RewriteCond %{HTTPS} off
+    RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+</IfModule>
+
+# HSTS (1 año, include subdomains, preload)
+<IfModule mod_headers.c>
+    Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload" env=HTTPS
+</IfModule>
+
+# =============================================================================
+# Security Headers
+# =============================================================================
+<IfModule mod_headers.c>
+    # CSP - Política de seguridad de contenido
+    Header always set Content-Security-Policy "default-src 'self'; object-src 'none'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://formspree.io; frame-ancestors 'none'; frame-src https://www.google.com; base-uri 'self'; form-action 'self'"
+
+    # Prevenir MIME sniffing
+    Header always set X-Content-Type-Options "nosniff"
+
+    # Protección contra clickjacking
+    Header always set X-Frame-Options "DENY"
+
+    # Referrer policy
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+
+    # Permissions Policy (deshabilitar APIs sensibles)
+    Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=(), usb=(), accelerometer=(), gyroscope=(), magnetometer=()"
+
+    # Cross-Origin policies para aislamiento
+    Header always set Cross-Origin-Opener-Policy "same-origin"
+    Header always set Cross-Origin-Resource-Policy "same-origin"
+
+    # Expect-CT para Certificate Transparency
+    Header always set Expect-CT "max-age=86400, enforce"
+
+    # Eliminar header Server (reduce fingerprinting)
+    Header unset Server
+    Header always set Server "Vidrios y Aluminios"
+</IfModule>
+
+# =============================================================================
+# Protección de archivos sensibles
+# =============================================================================
+<FilesMatch "^\.|README-SEGURIDAD\.md$|\.gitignore$">
+    Require all denied
+</FilesMatch>
+
+# Bloquear acceso a carpetas internas
+<DirectoryMatch "(seguridad|otros)">
+    Require all denied
+</DirectoryMatch>
+
+# =============================================================================
+# Caché estática agresiva (1 año para assets con hash, ajustar si no hay versionado)
+# =============================================================================
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/webp "access plus 1 year"
+    ExpiresByType image/svg+xml "access plus 1 year"
+    ExpiresByType image/x-icon "access plus 1 year"
+    ExpiresByType video/mp4 "access plus 1 year"
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+    ExpiresByType font/woff2 "access plus 1 year"
+</IfModule>
+
+# =============================================================================
+# Compresión
+# =============================================================================
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml application/json application/javascript application/xml application/xml+rss font/woff2
+</IfModule>
+
+# =============================================================================
+# Prevención de hotlinking (opcional, descomentar si se desea)
+# =============================================================================
+# <IfModule mod_rewrite.c>
+#     RewriteCond %{HTTP_REFERER} !^$
+#     RewriteCond %{HTTP_REFERER} !^https://(www\.)?tudominio\.com [NC]
+#     RewriteRule \.(jpg|jpeg|png|gif|webp|mp4)$ - [F,NC]
+# </IfModule>

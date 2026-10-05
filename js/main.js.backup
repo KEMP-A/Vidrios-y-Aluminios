@@ -1,0 +1,96 @@
+const header=document.getElementById('header');
+addEventListener('scroll',()=>header.classList.toggle('scrolled',scrollY>50));
+const toggle=document.getElementById('menuToggle'),navLinks=document.getElementById('navLinks');
+toggle.addEventListener('click',()=>navLinks.classList.toggle('open'));
+navLinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>navLinks.classList.remove('open')));
+const io=new IntersectionObserver(es=>es.forEach(e=>e.target.classList.toggle('visible',e.isIntersecting)),{threshold:.15});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+// Galería: lightbox sin innerHTML ni código inline (anti-XSS)
+const lightbox=document.getElementById('lightbox');
+const lbImg=document.getElementById('lbImg');
+document.querySelectorAll('.lb-img').forEach(img=>{
+  img.addEventListener('click',()=>{
+    lbImg.src=img.src;
+    lbImg.alt=img.alt||'Vista ampliada';
+    lightbox.classList.add('open');
+  });
+});
+lightbox.addEventListener('click',e=>{if(e.target===lightbox||e.target.id==='closeLb') lightbox.classList.remove('open')});
+
+document.getElementById('waFloat').addEventListener('click',()=>document.getElementById('waMenu').classList.toggle('open'));
+
+// Botón de reproducción centrado en cada video
+document.querySelectorAll('video[controls]').forEach(v=>{
+  const w=document.createElement('div');
+  w.className=v.classList.contains('video-destacado')?'play-wrap video-destacado':'play-wrap';
+  v.parentNode.insertBefore(w,v);w.appendChild(v);
+  const b=document.createElement('button');b.className='play-btn';b.setAttribute('aria-label','Reproducir');
+  w.appendChild(b);
+  b.addEventListener('click',()=>{v.play();b.classList.add('hide')});
+  v.addEventListener('pause',()=>b.classList.remove('hide'));
+  v.addEventListener('play',()=>b.classList.add('hide'));
+});
+
+// Carrusel de videos: 2 visibles en PC, 1 en celular
+const vTrack=document.getElementById('vcarTrack');
+let vIdx=0;
+function porVista(){return innerWidth<=850?1:2}
+function paso(){return innerWidth<=850?100:50} // % de desplazamiento
+function moverV(){vTrack.style.transform=`translateX(-${vIdx*paso()}%)`}
+document.getElementById('vNext').addEventListener('click',()=>{const s=porVista();vIdx=(vIdx+s)%4;moverV()});
+document.getElementById('vPrev').addEventListener('click',()=>{const s=porVista();vIdx=(vIdx-s+4)%4;moverV()});
+addEventListener('resize',()=>{vIdx=0;moverV()});
+
+// Carrusel de galería: cambio automático y con botones
+const slides=document.querySelectorAll('#carousel .slide');
+let idx=0,timer=setInterval(siguiente,4500);
+function mostrar(i){slides[idx].classList.remove('active');idx=(i+slides.length)%slides.length;slides[idx].classList.add('active')}
+function siguiente(){mostrar(idx+1)}
+document.getElementById('carNext').addEventListener('click',()=>{clearInterval(timer);siguiente();timer=setInterval(siguiente,4500)});
+document.getElementById('carPrev').addEventListener('click',()=>{clearInterval(timer);mostrar(idx-1);timer=setInterval(siguiente,4500)});
+
+// Formulario: protección básica de frontend.
+// OJO: esto NO sustituye rate limiting real, validación ni protección anti-spam en el servidor.
+const form=document.getElementById('formContacto');
+const msg=document.getElementById('formMsg');
+const limpiar=s=>s.replace(/[<>"'&]/g,'').trim();
+const emailOk=v=>/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v) && v.length<=100;
+const telOk=v=>/^[0-9+\-\s()]{7,20}$/.test(v);
+
+form.addEventListener('submit',e=>{
+  e.preventDefault();
+  msg.classList.remove('ok');
+  if(document.getElementById('fEmpresa').value){msg.textContent='No se pudo enviar la solicitud.';return;}
+  const ultimo=Number(localStorage.getItem('vmUltimoEnvio')||0);
+  if(Date.now()-ultimo<60000){msg.textContent='Espera un momento antes de enviar otra solicitud.';return;}
+  const nombre=limpiar(document.getElementById('fNombre').value);
+  const telefono=limpiar(document.getElementById('fTelefono').value);
+  const correo=limpiar(document.getElementById('fCorreo').value);
+  const tipo=document.getElementById('fTipo').value;
+  const mensaje=limpiar(document.getElementById('fMensaje').value);
+  if(!/^[A-Za-zÁÉÍÓÚáéíóúÑñÜü\s]{2,80}$/.test(nombre)){msg.textContent='El nombre solo debe tener letras.';return;}
+  if(!telOk(telefono)){msg.textContent='Ingresa un teléfono válido.';return;}
+  if(!emailOk(correo)){msg.textContent='Ingresa un correo electrónico válido.';return;}
+  if(!tipo){msg.textContent='Selecciona el tipo de proyecto.';return;}
+  if(mensaje.length<10||mensaje.length>1000){msg.textContent='El mensaje debe tener entre 10 y 1000 caracteres.';return;}
+  if(/(https?:\/\/|www\.|<.*?>|\[.*?\]\(.*?\)|!\[|<img|javascript:)/i.test(mensaje)){msg.textContent='El mensaje no puede contener enlaces ni imágenes.';return;}
+  localStorage.setItem('vmUltimoEnvio',Date.now());
+  // La página es estática: enviamos la solicitud por WhatsApp como mensaje
+  const asunto=`Cotización - ${tipo} - ${nombre}`;
+  const cuerpo=`Hola Virios y Aluminos, quiero solicitar una cotización.\n\n`+
+    `Nombre: ${nombre}\n`+
+    `Teléfono: ${telefono}\n`+
+    `Correo: ${correo}\n`+
+    `Tipo de proyecto: ${tipo}\n\n`+
+    `Mensaje:\n${mensaje}`;
+  // Envío automático por Formspree (llega a juancarlosjaramillo1413@gmail.com)
+  fetch('https://formspree.io/f/xwlpgzld',{
+    method:'POST',
+    headers:{'Content-Type':'application/json','Accept':'application/json'},
+    body:JSON.stringify({nombre,telefono,correo,tipo,mensaje,_subject:asunto})
+  }).then(r=>{
+    if(r.ok){msg.classList.add('ok');msg.textContent='¡Gracias! Tu solicitud fue enviada correctamente.';form.reset();}
+    else{msg.textContent='No se pudo enviar. Inténtalo de nuevo o escríbenos por WhatsApp.';}
+  }).catch(()=>{msg.textContent='No se pudo enviar. Revisa tu conexión e inténtalo de nuevo.';});
+});

@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vidrios y Aluminios | Soluciones en vidrio y aluminio</title>
+<meta name="description" content="Vidrios y Aluminios: soluciones en vidrio y aluminio para hogares, negocios y proyectos. Diseño, funcionalidad y calidad.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; object-src 'none'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://formspree.io; frame-ancestors 'none'; frame-src https://www.google.com; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), interest-cohort=()">
+<meta http-equiv="X-Frame-Options" content="DENY">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+
+<!-- Open Graph / Facebook / WhatsApp / LinkedIn -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://erhntrjtor.github.io/informe-sitio-juancarlos/">
+<meta property="og:title" content="Vidrios y Aluminios | Soluciones en vidrio y aluminio">
+<meta property="og:description" content="Soluciones en vidrio y aluminio para hogares, negocios y proyectos. Ventanas, puertas, divisiones, espejos y cerramientos con diseño, funcionalidad y calidad.">
+<meta property="og:image" content="imagenes/foto17.jpeg">
+<meta property="og:locale" content="es_CO">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="https://erhntrjtor.github.io/informe-sitio-juancarlos/">
+<meta name="twitter:title" content="Vidrios y Aluminios | Soluciones en vidrio y aluminio">
+<meta name="twitter:description" content="Soluciones en vidrio y aluminio para hogares, negocios y proyectos. Ventanas, puertas, divisiones, espejos y cerramientos.">
+<meta name="twitter:image" content="imagenes/foto17.jpeg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<!-- Favicon optimizado (logo recortado sin márgenes, padding mínimo 3%) -->
+<link rel="icon" type="image/png" sizes="16x16" href="imagenes/favicon-16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="imagenes/favicon-32.png">
+<link rel="icon" type="image/png" sizes="48x48" href="imagenes/favicon-48.png">
+<link rel="icon" type="image/png" sizes="64x64" href="imagenes/favicon-64.png">
+<link rel="icon" type="image/png" sizes="96x96" href="imagenes/favicon-96.png">
+<link rel="icon" type="image/png" sizes="128x128" href="imagenes/favicon-128.png">
+<link rel="icon" type="image/png" sizes="192x192" href="imagenes/favicon-192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="imagenes/favicon-512.png">
+
+<!-- Apple / iOS / accesos directos Android -->
+<link rel="apple-touch-icon" sizes="180x180" href="imagenes/favicon-192.png">
+<link rel="apple-touch-icon" sizes="192x192" href="imagenes/favicon-192.png">
+<link rel="stylesheet" href="css/estilo.css">
+</head>
+<body>
+
+<header id="header">
+  <div class="container">
+    <nav>
+      <a href="#inicio" class="logo">VIDRIOS Y ALUMINIOS<img src="imagenes/logo.png" class="logo-img" alt="Logo"></a>
+      <button id="menuToggle" aria-label="Menú">☰</button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#nosotros">Nosotros</a></li>
+        <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#ubicacion">Ubicación</a></li>
+        <li><a href="#contacto" class="nav-cta">Solicitar cotización</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<section class="hero" id="inicio">
+  <img class="hero-video" src="imagenes/foto1.jpg" alt="Trabajo de vidrio y aluminio de Vidrios y Aluminios">
+  <div class="container">
+    <h1>Vidrios y Aluminios<img src="imagenes/logo.png" class="logo-img logo-hero" alt="Logo"></h1>
+    <h2>Diseñamos espacios que hacen la diferencia</h2>
+    <p>Soluciones en vidrio y aluminio para hogares, negocios y proyectos, combinando diseño, funcionalidad y calidad.</p>
+    <div class="hero-btns">
+      <a href="#contacto" class="btn btn-hero">Solicitar cotización</a>
+      <a href="#videos" class="btn btn-outline">Ver nuestros trabajos</a>
+    </div>
+  </div>
+</section>
+
+<section id="nosotros">
+  <div class="container about">
+    <img class="reveal" src="imagenes/foto15.jpeg" alt="Local de Vidrios y Aluminios">
+    <div class="reveal">
+      <span class="overline">Nosotros</span>
+      <h2>Sobre Vidrios y Aluminios</h2>
+      <p>Somos una empresa dedicada a ofrecer soluciones en vidrio y aluminio, enfocada en la calidad, los buenos acabados, el diseño y una atención personalizada en cada proyecto. Acompañamos a nuestros clientes desde la planeación hasta la instalación final.</p>
+      <br>
+      <a href="#contacto" class="btn btn-dark">Contáctanos</a>
+    </div>
+  </div>
+</section>
+
+<section class="why">
+  <div class="container">
+    <span class="overline overline-dark reveal">¿Por qué elegirnos?</span>
+    <h2 class="title-white reveal">La diferencia Vidrios y Aluminios<img src="imagenes/logo.png" class="logo-img inline-logo" alt="Logo"></h2>
+    <div class="why-grid">
+      <div class="why-item reveal"><h3>Diseños personalizados</h3><p>Cada proyecto se adapta a las necesidades de tu espacio.</p></div>
+      <div class="why-item reveal"><h3>Acabados de calidad</h3><p>Cuidamos cada detalle para entregar un resultado impecable.</p></div>
+      <div class="why-item reveal"><h3>Atención personalizada</h3><p>Te acompañamos en todo el proceso del proyecto.</p></div>
+      <div class="why-item reveal"><h3>Soluciones para cada espacio</h3><p>Hogares, negocios y proyectos con la misma dedicación.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="videopresentacion">
+  <div class="container">
+    <span class="overline reveal">Conócenos</span>
+    <h2 class="reveal">Lo que hacemos, en video</h2>
+    <p class="text-muted reveal">Descubre qué hacemos en Vidrios y Aluminios y cómo trabajamos en cada proyecto.</p>
+    <video controls preload="metadata" class="video-destacado reveal"><source src="videos/video1%20(2).mp4" type="video/mp4">Tu navegador no soporta video.</video>
+  </div>
+</section>
+
+<section id="videos" class="videos-sec">
+  <div class="container">
+    <span class="overline reveal">En acción</span>
+    <h2 class="reveal">Nuestros Trabajos en Video</h2>
+    <div class="vcar">
+      <div class="vcar-track" id="vcarTrack">
+        <video controls preload="metadata" class="reveal"><source src="videos/video2.mp4" type="video/mp4">Tu navegador no soporta video.</video>
+        <video controls preload="metadata" class="reveal"><source src="videos/video3.mp4" type="video/mp4">Tu navegador no soporta video.</video>
+        <video controls preload="metadata" class="reveal"><source src="videos/video4.mp4" type="video/mp4">Tu navegador no soporta video.</video>
+        <video controls preload="metadata" class="reveal"><source src="videos/video5.mp4" type="video/mp4">Tu navegador no soporta video.</video>
+      </div>
+      <button class="car-btn prev" id="vPrev" aria-label="Anterior">&#10094;</button>
+      <button class="car-btn next" id="vNext" aria-label="Siguiente">&#10095;</button>
+    </div>
+  </div>
+</section>
+
+<section id="galeria">
+  <div class="container">
+    <span class="overline reveal">Nuestro trabajo</span>
+    <h2 class="reveal">Galería de Proyectos</h2>
+    <p class="text-muted reveal">Recorre nuestros trabajos.</p>
+    <div class="carousel" id="carousel">
+      <img class="slide active" src="imagenes/foto7.jpeg" alt="Proyecto 1">
+      <img class="slide" src="imagenes/foto11.jpeg" alt="Proyecto 2">
+      <img class="slide" src="imagenes/foto12.jpeg" alt="Proyecto 3">
+      <img class="slide" src="imagenes/foto13.jpeg" alt="Proyecto 4">
+      <img class="slide" src="imagenes/foto14.jpeg" alt="Proyecto 5">
+      <img class="slide" src="imagenes/foto2.jpeg" alt="Ventanas de aluminio">
+      <img class="slide" src="imagenes/foto3.jpeg" alt="Puerta de vidrio">
+      <img class="slide" src="imagenes/foto6.jpeg" alt="Ventanales modernos">
+      <img class="slide" src="imagenes/foto9.jpeg" alt="Puertas de aluminio">
+      <button class="car-btn prev" id="carPrev" aria-label="Anterior">&#10094;</button>
+      <button class="car-btn next" id="carNext" aria-label="Siguiente">&#10095;</button>
+    </div>
+  </div>
+</section>
+
+<section id="servicios">
+  <div class="container">
+    <span class="overline reveal">Lo que hacemos</span>
+    <h2 class="reveal">Nuestros Servicios</h2>
+    <div class="grid-services">
+      <div class="card reveal"><div class="card-body"><h3>Ventanas en aluminio y vidrio</h3><p>Ventanas resistentes y funcionales, con acabados elegantes que realzan cualquier fachada.</p></div></div>
+      <div class="card reveal"><div class="card-body"><h3>Puertas en aluminio y vidrio</h3><p>Puertas duraderas y modernas, ideales para todo tipo de espacio.</p></div></div>
+      <div class="card reveal"><div class="card-body"><h3>Espejos</h3><p>Espejos a medida para baños y decoración de interiores.</p></div></div>
+      <div class="card reveal"><div class="card-body"><h3>Soluciones personalizadas</h3><p>Proyectos de vidrio y aluminio hechos a tu medida.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="container reveal">
+    <h2>¿Tienes un proyecto en mente?</h2>
+    <p class="text-light cta-text">Cuéntanos qué necesitas y encontremos juntos la mejor solución para tu espacio.</p>
+    <a href="#contacto" class="btn btn-outline">Solicitar cotización</a>
+  </div>
+</section>
+
+<section id="ubicacion" class="map-sec">
+  <div class="container">
+    <span class="overline reveal">Visítanos</span>
+    <h2 class="reveal">Nuestra Ubicación</h2>
+    <div class="map-grid reveal">
+      <div class="map-wrap">
+        <iframe title="Ubicación de Vidrios y Aluminios en Google Maps" src="https://www.google.com/maps?q=4.845112,-75.6617322&z=16&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+      </div>
+      <div class="map-info">
+        <h3>Al frente de El Llantazo en la Capilla</h3>
+        <p>Dosquebradas, Risaralda. Estamos ubicados en un punto de fácil acceso para que puedas visitarnos.</p>
+        <p>Cra. 16#6625 <p>
+    
+        <p class="map-link"><a class="btn btn-dark" href="https://maps.app.goo.gl/ARSTixcyupePWThh7" target="_blank" rel="noopener noreferrer">Abrir en Google Maps ↗</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contacto">
+  <div class="container">
+    <span class="overline reveal">Hablemos</span>
+    <h2 class="reveal">Contacto</h2>
+    <div class="contact-grid">
+      <form id="formContacto" class="reveal" novalidate>
+        <input type="text" id="fNombre" placeholder="Nombre" required maxlength="80" autocomplete="name">
+        <input type="tel" id="fTelefono" placeholder="Teléfono" required maxlength="20" autocomplete="tel">
+        <input type="email" id="fCorreo" placeholder="Correo electrónico" required maxlength="100" autocomplete="email">
+        <select id="fTipo" required>
+          <option value="">Tipo de proyecto</option>
+          <option>Ventanas</option>
+          <option>Puertas</option>
+          <option>Divisiones</option>
+          <option>Cerramientos</option>
+          <option>Espejos</option>
+          <option>Otro</option>
+        </select>
+        <textarea id="fMensaje" rows="5" placeholder="Mensaje" required maxlength="1000"></textarea>
+        <input type="text" id="fEmpresa" name="empresa" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <button type="submit" class="btn btn-dark">Enviar solicitud</button>
+        <p id="formMsg" class="form-msg" role="alert"></p>
+      </form>
+      <div class="reveal">
+        <h3>Contacto rápido</h3>
+        <p class="text-muted">Escríbenos por WhatsApp o síguenos en redes sociales. (Reemplaza los enlaces con los datos reales)</p>
+        <div class="social-btns">
+          <a class="btn btn-dark" href="https://wa.me/573128485935" target="_blank" rel="noopener noreferrer">WhatsApp Juan Carlos</a>
+          <a class="btn btn-dark" href="https://wa.me/573104268315" target="_blank" rel="noopener noreferrer">WhatsApp Mauricio</a>
+        </div>
+        <p class="contact-info">
+          📍 Dirección: <em>Al frente de El Llantazo en la Capilla, Dosquebradas, Risaralda 
+          </em><br>
+          📞 Teléfono: <em>Juan Carlos: 312 848 5935 · Mauricio: 310 426 8315</em><br>
+          ✉️ Correo: <em>juancarlosjaramillo1413@gmail.com</em>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <h3 class="footer-brand">VIDRIOS Y ALUMINIOS<img src="imagenes/logo.png" class="logo-img inline-logo" style="height:36px !important" alt="Logo"></h3>
+        <p>Soluciones en vidrio y aluminio.</p>
+      </div>
+      <div>
+        <h4 class="footer-title">Enlaces</h4>
+        <a href="#inicio">Inicio</a><a href="#nosotros">Nosotros</a><a href="#servicios">Servicios</a><a href="#galeria">Galería</a><a href="#ubicacion">Ubicación</a><a href="#contacto">Contacto</a>
+      </div>
+      <div>
+        <h4 class="footer-title">Contacto</h4>
+        <a href="https://wa.me/573128485935" target="_blank" rel="noopener noreferrer">WhatsApp Juan Carlos</a>
+        <a href="https://wa.me/573104268315" target="_blank" rel="noopener noreferrer">WhatsApp Mauricio</a>
+        <p class="footer-contact">📍 <em>Al frente de El Llantazo en la Capilla, Dosquebradas, Risaralda</em><br>📞 <em>Juan Carlos: 312 848 5935 · Mauricio: 310 426 8315</em><br>✉️ <em>juancarlosjaramillo1413@gmail.com</em></p>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2026 Vidrios y Aluminios<img src="imagenes/logo.png" class="logo-img inline-logo" alt="Logo">. Todos los derechos reservados.</div>
+  </div>
+</footer>
+
+<div id="waWrap">
+  <div id="waMenu">
+    <a href="https://wa.me/573128485935" target="_blank" rel="noopener noreferrer">Juan Carlos</a>
+    <a href="https://wa.me/573104268315" target="_blank" rel="noopener noreferrer">Mauricio</a>
+  </div>
+  <button id="waFloat" aria-label="WhatsApp">
+    <svg viewBox="0 0 32 32" width="30" height="30" fill="#fff"><path d="M16.003 3C9.376 3 4 8.373 4 15.997c0 2.3.604 4.536 1.754 6.505L4 29l6.668-1.72a12.02 12.02 0 0 0 5.335 1.159C22.629 28.44 28 23.066 28 15.997 28 8.373 22.63 3 16.003 3zm6.18 17.35c-.26.73-1.496 1.402-2.071 1.493-.53.084-1.202.12-1.936-.122-.446-.147-1.016-.332-1.752-.648-3.084-1.326-5.097-4.417-5.252-4.622-.155-.205-1.245-1.655-1.245-3.155 0-1.5.787-2.235 1.067-2.543.28-.309.61-.386.814-.386.204 0 .408.002.586.011.188.009.44-.071.69.526.26.625.879 2.142.956 2.298.077.157.13.34.026.544-.104.205-.157.333-.313.512-.157.18-.33.4-.472.538-.157.156-.32.325-.137.64.183.314.813 1.34 1.744 2.172 1.197 1.066 2.206 1.396 2.52 1.553.314.157.497.131.68-.078.184-.21.782-.912 1.0-1.226.21-.313.424-.262.71-.157.287.104 1.82.858 2.132 1.015.314.157.522.235.6.365.077.13.077.754-.183 1.483z"/></svg>
+  </button>
+</div>
+
+<div class="lightbox" id="lightbox">
+  <button id="closeLb" aria-label="Cerrar">&times;</button>
+  <img id="lbImg" src="" alt="Vista ampliada">
+</div>
+
+<script src="js/main.js"></script>
+</body>
+</html>

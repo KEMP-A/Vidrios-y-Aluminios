@@ -1,0 +1,8 @@
+# Security.txt - Responsible Disclosure
+# https://securitytxt.org/
+
+Contact: mailto:juancarlosjaramillo1413@gmail.com
+Expires: 2027-12-31T23:59:59.000Z
+Preferred-Languages: es, en
+Canonical: https://erhntrjtor.github.io/informe-sitio-juancarlos/.well-known/security.txt
+Policy: https://erhntrjtor.github.io/informe-sitio-juancarlos/security-policy.html
