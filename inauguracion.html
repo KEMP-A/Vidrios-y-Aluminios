@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; object-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; base-uri 'self'">
+  <title>Bienvenida | Vidrios y Aluminios JJ</title>
+  <link rel="stylesheet" href="css/inauguracion.css">
+</head>
+<body>
+  <!-- Configuración: cambia data-active, data-seconds, data-max-views o data-edition. -->
+  <div id="gate" data-active="true" data-seconds="15" data-max-views="2" data-edition="1" hidden role="dialog" aria-modal="true" aria-labelledby="gateTitle" aria-describedby="gateHint">
+    <div class="gate-message">
+      <h1 id="gateTitle">Vidrios y Aluminios JJ</h1>
+      <p>¡Gran inauguración!</p>
+      <p id="gateViewCount" class="gate-view-count" aria-live="polite"></p>
+    </div>
+    <div class="gate-band gate-band-left" aria-hidden="true"></div>
+    <div class="gate-band gate-band-right" aria-hidden="true"></div>
+    <button id="gateOpen" type="button" aria-label="Cortar el moño y abrir la página">
+      <svg id="bow" viewBox="0 0 200 140" aria-hidden="true">
+        <path d="M100 70 L40 130 L62 132 L100 84Z" fill="#123f8a"/>
+        <path d="M100 70 L160 130 L138 132 L100 84Z" fill="#123f8a"/>
+        <path d="M100 70C70 20 8 10 8 50c0 36 56 28 92 20Z" fill="#2f74d6"/>
+        <path d="M100 70C130 20 192 10 192 50c0 36-56 28-92 20Z" fill="#2f74d6"/>
+        <path d="M100 70C74 38 30 30 26 50c-2 18 40 18 74 20Z" fill="#8ab6f5" opacity=".7"/>
+        <path d="M100 70C126 38 170 30 174 50c2 18-40 18-74 20Z" fill="#8ab6f5" opacity=".7"/>
+        <circle cx="100" cy="70" r="17" fill="#c9a24a" stroke="#fff3c4" stroke-width="3"/>
+      </svg>
+      <span id="gateHint">Toca el moño para entrar</span>
+    </button>
+    <div id="welcomePanel" aria-live="polite" aria-atomic="true">
+      <div class="welcome-card" tabindex="-1">
+        <p class="welcome-celebration">¡Bienvenidos!</p>
+        <h2>Esto fue creado para ustedes</h2>
+        <h3>Vidrios y Aluminios JJ</h3>
+        <p class="welcome-countdown">Entrando a la página en <strong id="welcomeSeconds">15</strong> s</p>
+        <progress class="welcome-progress" max="15" value="15" aria-hidden="true"></progress>
+      </div>
+    </div>
+  </div>
+  <canvas id="gateFx" aria-hidden="true"></canvas>
+  <script src="js/inauguracion.js"></script>
+</body>
+</html>
