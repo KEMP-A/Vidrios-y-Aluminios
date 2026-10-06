@@ -131,8 +131,8 @@ footer a:hover{color:#fff}
 .play-btn::after{content:'';border-left:22px solid #fff;border-top:14px solid transparent;border-bottom:14px solid transparent;margin-left:5px}
 .play-btn.hide{display:none}
 /* Animaciones */
-.reveal{opacity:0;transform:translateY(40px);transition:.7s ease}
-.reveal.visible{opacity:1;transform:none}
+.reveal{opacity:0;transition:opacity .7s ease}
+.reveal.visible{opacity:1}
 @media(max-width:850px){
   nav{position:relative;display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:8px;align-items:center;width:100%;min-width:0}
   .logo{order:1;grid-column:1;width:auto;min-width:0;justify-self:start;overflow:hidden;white-space:nowrap;font-size:clamp(15px,4.7vw,19px);letter-spacing:.6px}
@@ -214,8 +214,6 @@ footer a:hover{color:#fff}
 .map-info .map-link{margin:18px 0 0}
 .map-info .map-link .btn{display:inline-block}
 .map-link a{text-decoration:none}
-#welcomeFrame{position:fixed;inset:0;z-index:99998;width:100%;height:100%;border:0}
-#welcomeFrame[hidden]{display:none}
 .carousel{position:relative;margin:50px auto 0;width:min(90%,1000px);text-align:center}
 .carousel .slide{display:none;width:auto;max-width:100%;max-height:65vh;margin:0 auto;border-radius:6px}
 .carousel .slide.active{display:block;animation:fadeIn .8s ease}

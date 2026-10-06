@@ -3,13 +3,7 @@
 const header = document.getElementById('header');
 const menuToggle = document.getElementById('menuToggle');
 const navLinks = document.getElementById('navLinks');
-const welcomeFrame = document.getElementById('welcomeFrame');
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-
-window.addEventListener('message', event => {
-  if (!welcomeFrame || event.source !== welcomeFrame.contentWindow) return;
-  if (event.data?.type === 'inauguracion:close') welcomeFrame.remove();
-});
 
 function updateHeader() {
   if (header) header.classList.toggle('scrolled', window.scrollY > 50);
